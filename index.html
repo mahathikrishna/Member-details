@@ -1,0 +1,90 @@
+<!doctype html>
+<html ng-app='myNewApp'>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='style.css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+</head>
+
+
+<body>
+  <div class="nav">
+    <ul>
+      <li>
+        <a href="#"> <img src="http://www.dilex.si/Portals/0/Content/Icons/left.png" /> </a>
+      </li>
+      <li>
+        <a href="#"> <img src="http://www.asa-subaquatique.com/wp-content/plugins/plongees/images/arrow_right.png" class="size" /> </a>
+      </li>
+      <li>
+        <a href="#"> <img src="http://www.goran.beezgetz.com/img/home.png" id="size1" /> </a>
+      </li>
+      <li>
+        <input type="url" placeholder="http://">
+      </li>
+      <li>
+        <input type="text" placeholder="search">
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <h1> UX SOCIETY MEMBERS</h1>
+    <form>
+      <input type="search" placeholder="Enter member name to search" />
+      <input type="submit" value="search" />
+    </form>
+  </div>
+
+  <div ng-controller='ParentController as pc'>
+    <div class='col1'>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Occupation</th>
+            <th>Company</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat='u in pc.users' ng-click='pc.selected = u' ng-class='{"active": (pc.selected == u)}'>
+            <td>{{u.firstName}} {{u.middleInitial}} {{u.surname}}</td>
+            <td>{{u.occupation}}</td>
+            <td>{{u.company}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class='col2' ng-show="pc.selected">
+      <div>
+        <h3>Member Details</h3>
+      </div>
+      <div>
+        ID:  {{pc.selected.id}} <br>
+        FULL NAME:  {{pc.selected.firstName}} {{pc.selected.middleInitial}} {{pc.selected.surname}} <br>
+        GENDER:  {{pc.selected.gender}} <br>
+        TITLE:  {{pc.selected.title}} <br>
+        STREET ADDRESS:  {{pc.selected.streetAddress}} <br>
+        CITY:  {{pc.selected.city}} <br>
+        STATE:  {{pc.selected.state}} <br>
+        ZIPCODE:  {{pc.selected.zipCode}} <br>
+        COUNTRY:  {[pc.selected.country}} <br>
+        EMAIL:  {{pc.selected.email}} <br>
+        USERNAME:  {{pc.selected.username}} <br>
+        BIRTHDAY:  {{pc.selected.birthday}} <br>
+        COMPANY:  {{pc.selected.company}} <br>
+        LATITUDE:  {{pc.selected.latitude}} <br>
+        LONGITUDE:  {{pc.selected.longitude}} <br>
+        MOTTO:  {{pc.selected.motto}} <br>
+        PORTRAIT: <img src="{{pc.selected.portrait}}" align="center"/>
+      </div>
+    </div>
+    <div class='col2' ng-hide="pc.selected">
+      <h3>Member Details</h3>
+    </div>
+  </div>
+  <script src='script.js'></script>
+</body>
+
+</html>
